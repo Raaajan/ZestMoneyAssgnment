@@ -1,0 +1,53 @@
+package com.zestmoney.compare;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Base {
+	
+	public WebDriver driver;
+
+	public void openBrowser() {
+		
+		System.setProperty("webdriver.chrome.driver",
+				System.getProperty("user.dir") + "\\src\\main\\java\\drivers\\chromedriver.exe");
+		driver = new ChromeDriver();
+		
+		driver.manage().timeouts().implicitlyWait(180, TimeUnit.SECONDS);
+}
+	
+	public String searchPhoneAndReturnPrice(List<WebElement> phoneNames,List<WebElement> phonePrices ) {
+		int flag = 0;
+		 String phoneName;
+		 String phonePrice = null;
+		System.out.println("size : "+phoneNames.size());
+		 for(int i=0;i<phoneNames.size();i++) {
+			 phoneName = phoneNames.get(i).getText();
+			phoneName = phoneName.toUpperCase();
+			System.out.println(phoneName);
+			if(phoneName.contains("XR") && phoneName.contains("CORAL"))
+			{
+				 phonePrice = phonePrices.get(i).getText();
+				flag=1;
+				break;
+			}
+		}
+		 if(flag==1) {
+			//String phPrice = phonePrice.split("?");
+			//System.out.println(phPrice[0]+": "+phPrice[1]);
+			 if(phonePrice.contains("?")) {
+				 phonePrice = phonePrice.substring(1);
+			 }
+			return "phone found and price for phone is :" +phPrice;
+		 }
+		 else {
+			 return "Phone Not found with keyword specified try with other keywords";
+		 }
+
+		}	
+	
+}

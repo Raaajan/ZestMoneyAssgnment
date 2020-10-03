@@ -1,0 +1,17 @@
+package com.zestmoney.compare;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class FlipkartPriceTest extends Base {
+	@BeforeTest
+	public void browser() {
+		openBrowser();
+	}
+	@Test()
+	 public void comparePrice() throws Exception {
+		
+		driver.get("https://www.flipkart.com/");
+		Thread.sleep(5000);
+}
+}

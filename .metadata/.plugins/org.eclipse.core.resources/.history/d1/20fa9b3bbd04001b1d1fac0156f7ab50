@@ -1,0 +1,52 @@
+package com.zestmoney.compare;
+
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.zestmoney.compare.Base;
+import com.zestmoney.compare.SearchAmazon;
+
+public class AmazonPriceTest extends Base{
+	
+@BeforeTest
+public void browser() {
+	openBrowser();
+}
+@Test()
+ public void comparePrice() throws Exception {
+	
+	driver.get("https://www.amazon.in/");
+	Thread.sleep(5000);
+	SearchAmazon amazon = new SearchAmazon(driver);
+	amazon.searchProduct("iphone xr 64gb yellow");
+	amazon.clickSearchBtn();
+
+	List<WebElement> phoneNames = amazon.getPhoneNames();
+	List<WebElement> phonePrices = amazon.getPrices();
+	int flag = 0;
+	 String phoneName;
+	 String phonePrice = null;
+	 for(int i=0;i<phoneNames.size();i++) {
+		 phoneName = phoneNames.get(i).getText();
+		phoneName = phoneName.toUpperCase();
+		
+		if(phoneName.contains("XR") && phoneName.contains("YELLOW"))
+		{
+			 phonePrice = phonePrices.get(i).getText();
+			flag=1;
+			break;
+		}
+	}
+	 if(flag==1) {
+		 System.out.println("phone found and price for phone is :" +phonePrice);
+	 }
+	 else {
+	 System.out.println("Phone Not found with keyword specified try with other keywords");
+	 }
+
+}
+
+}

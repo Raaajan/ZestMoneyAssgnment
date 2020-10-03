@@ -1,0 +1,8 @@
+package com.zestmoney.compare;
+
+public class SearchAmazon {
+	
+	@FindBy(id="twotabsearchtextbox")
+	private WebElement searchbox;
+
+}
