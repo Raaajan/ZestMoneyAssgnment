@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="58570" started-at="2020-10-03T09:36:21Z" finished-at="2020-10-03T09:37:19Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="58570" started-at="2020-10-03T09:36:21Z" finished-at="2020-10-03T09:37:19Z">
+      <class name="com.zestmoney.compare.ComparePriceTest">
+        <test-method status="PASS" signature="browser()[pri:0, instance:com.zestmoney.compare.ComparePriceTest@d56d67]" name="browser" is-config="true" duration-ms="5411" started-at="2020-10-03T09:36:21Z" finished-at="2020-10-03T09:36:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browser -->
+        <test-method status="PASS" signature="getPriceAmazon()[pri:1, instance:com.zestmoney.compare.ComparePriceTest@d56d67]" name="getPriceAmazon" duration-ms="33458" started-at="2020-10-03T09:36:26Z" finished-at="2020-10-03T09:37:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getPriceAmazon -->
+        <test-method status="PASS" signature="getPriceFlipKart()[pri:2, instance:com.zestmoney.compare.ComparePriceTest@d56d67]" name="getPriceFlipKart" duration-ms="17473" started-at="2020-10-03T09:37:00Z" finished-at="2020-10-03T09:37:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getPriceFlipKart -->
+        <test-method status="PASS" signature="compare()[pri:3, instance:com.zestmoney.compare.ComparePriceTest@d56d67]" name="compare" duration-ms="16" started-at="2020-10-03T09:37:17Z" finished-at="2020-10-03T09:37:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- compare -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.zestmoney.compare.ComparePriceTest@d56d67]" name="tearDown" is-config="true" duration-ms="2176" started-at="2020-10-03T09:37:17Z" finished-at="2020-10-03T09:37:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.zestmoney.compare.ComparePriceTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

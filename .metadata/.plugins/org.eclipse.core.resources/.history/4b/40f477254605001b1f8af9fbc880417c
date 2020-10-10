@@ -1,0 +1,91 @@
+package com.zestmoney.compare;
+
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.zestmoney.compare.Base;
+import com.zestmoney.compare.SearchAmazon;
+
+public class AmazonPriceTest extends Base{
+	int amazonprice ;
+	int flipkartprice ;
+	String amazonresult;
+	String flipkartresult;
+@BeforeTest
+public void browser() {
+	openBrowser();
+}
+@Test(priority=1)
+ public void getPriceAmazon() throws Exception {
+	
+	driver.get("https://www.amazon.in/");
+	Thread.sleep(5000);
+	SearchAmazon amazon = new SearchAmazon(driver);
+	amazon.searchProduct("iphone xr 64gb yellow");
+	amazon.clickSearchBtn();
+
+	List<WebElement> phoneNames = amazon.getPhoneNames();
+	List<WebElement> phonePrices = amazon.getPrices();
+	
+	 amazonresult = searchPhoneAndReturnPrice(phoneNames,phonePrices);
+	if(amazonresult!=null) {
+		System.out.println("amazon if");
+	amares[]=amazonresult.split(",");
+	String price = amazonresult;
+	amazonprice = Integer.parseInt(price);
+	}
+	System.out.println("price is : "+amazonprice);
+
+}
+
+@Test(priority=2)
+public void getPriceFlipKart() throws Exception {
+	
+	driver.get("https://www.flipkart.com/");
+	Thread.sleep(5000);
+	
+	SearchFlipkart flipkart = new SearchFlipkart(driver);
+	flipkart.clickCancel();
+	flipkart.searchProduct("iphone xr 64gb yellow");
+	flipkart.clickSearchBtn();
+	Thread.sleep(5000);
+	List<WebElement> phoneNames = flipkart.getPhoneNames();
+	List<WebElement> phonePrices = flipkart.getPrices();
+
+	flipkartresult = searchPhoneAndReturnPrice(phoneNames,phonePrices);
+	if(flipkartresult!=null) {
+		System.out.println("flipkart if");
+	String price = flipkartresult.substring(1);
+	flipkartprice = Integer.parseInt(price);
+	}
+	System.out.println("price is : "+flipkartprice);
+}
+
+@Test(priority=3)
+public void compare() {
+	if(amazonresult==null || flipkartresult==null) {
+		System.out.println("Item not found on any or both website");
+	}
+	else if(amazonprice<flipkartprice) {
+		System.out.println("amazon has lesser price");
+	}
+	else if(amazonprice>flipkartprice) {
+		System.out.println("flipkart has lesser price");
+	}
+	else {
+		System.out.println("price on both website is same");
+	}
+}
+
+
+@AfterTest()
+public void tearDown()
+{
+	driver.close();
+}
+
+}
