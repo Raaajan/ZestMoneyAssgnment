@@ -1,0 +1,73 @@
+package com.zestmoney.tripadvisor;
+
+	import java.util.Iterator;
+	import java.util.Set;
+
+	import org.openqa.selenium.By;
+	import org.openqa.selenium.JavascriptExecutor;
+	import org.openqa.selenium.Keys;
+	import org.openqa.selenium.WebElement;
+	import org.openqa.selenium.interactions.Actions;
+	import org.openqa.selenium.support.ui.ExpectedConditions;
+	import org.openqa.selenium.support.ui.WebDriverWait;
+	import org.testng.annotations.BeforeTest;
+	import org.testng.annotations.Test;
+
+	import com.zestmoney.compare.Base;
+	import com.zestmoney.facebook.FacebookPost;
+
+	public class TripAdvisorTest extends Base{
+		
+		FacebookPost post;
+		@BeforeTest
+		public void browser() {
+			openBrowser();
+		}
+
+		@Test(priority=1)
+		public void search() throws InterruptedException {
+			
+			driver.get("https://www.tripadvisor.in/");
+			Thread.sleep(5000);
+			
+			driver.findElement(By.xpath("//button[@aria-label='Close' and @type='button']")).click();
+			js.executeScript("window.scrollBy(0,900)");
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("//input[@type='search']")).sendKeys("club mahindra");
+			driver.findElement(By.xpath("//button[@type='submit' and @title='Search']")).click();
+			System.out.println("title1 "+driver.getTitle());
+			WebElement firstresult = driver.findElement(By.xpath("(//div[@class='result-title'])[1]"));
+			firstresult.click();
+			a.keyDown(Keys.SHIFT).click(firstresult).build().perform();
+			Thread.sleep(5000);
+			Set<String> windows = driver.getWindowHandles();
+			System.out.println("windows "+windows);
+			Iterator<String> itr = windows.iterator();
+			String mainwin = itr.next();
+			System.out.println("mainwin "+mainwin);
+			while(itr.hasNext()) {
+				String newwin = itr.next();
+				System.out.println("win"+newwin);
+				driver.switchTo().window(newwin);  
+				System.out.println("switched to tab successfully");
+			}
+			Thread.sleep(5000);
+			System.out.println("title3 "+driver.getTitle());
+			driver.manage().window().maximize();
+			WebElement review = driver.findElement(By.xpath("//div[@id='COMMUNITYCONTENT']//a[contains(@href,'UserReview')]"));
+			review.click();
+				
+			//WebDriverWait wait = new WebDriverWait(driver,90);
+			
+			//By bubble = driver.findElement(By.xpath("//span[@id='bubble_rating']"));
+			
+			//a.moveToElement(bubble).build().perform();
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='bubble_rating']")));
+			//a.moveToElement(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='bubble_rating']"))), 50, 0).build().perform();
+			new Actions(driver).moveToElement(new WebDriverWait(driver, 20)
+					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='bubble_rating']"))), 50, 0)
+					.click().build().perform();
+			
+		}
+	}
+
