@@ -7,13 +7,17 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 public class Base {
 	
@@ -22,10 +26,37 @@ public class Base {
 	protected Properties prop;
 	protected JavascriptExecutor js;
 	protected Actions a;
+	public static  Logger log;
+	
+	public void initialize() {
+		log = LogManager.getLogger(Base.class);
+		
+		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		
+		try {
+			fi = new FileInputStream(System.getProperty("user.dir") +"\\src\\test\\java\\resources\\prop.properties");
+			 prop = new Properties();
+			 prop.load(fi);
+			 log.info("properties file loaded");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		js = (JavascriptExecutor)driver;
+		a = new Actions(driver);
+	
+		log.info("Basic Initialization done");
+	}
+	
+	
 	public void openBrowser() {
 		
-		System.setProperty("webdriver.chrome.driver",
-				System.getProperty("user.dir") + "\\src\\main\\java\\drivers\\chromedriver.exe");
+		/* if we write line code then there is not need to do system.setProperty("",""). 
+		Every thing is done automatically we don't need to download driver and keep it in framework. */
+		WebDriverManager.chromedriver().setup(); 
+		
+		
 		//Create a map to store  preferences 
 		Map<String, Object> prefs = new HashMap<String, Object>();
 
@@ -43,19 +74,9 @@ public class Base {
 		//which will switch off this browser notification on the chrome browser
 		driver = new ChromeDriver(options);
 	
-		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
-		
-		try {
-			 fi = new FileInputStream(System.getProperty("user.dir") +"\\src\\test\\java\\resources\\prop.properties");
-			 prop = new Properties();
-			 prop.load(fi);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		js = (JavascriptExecutor)driver;
-		a = new Actions(driver);
+		driver.manage().deleteAllCookies();
+		initialize();
+		log.info("browser opened");
 }
 	
 	public String searchPhoneAndReturnPrice(List<WebElement> phoneNames,List<WebElement> phonePrices ) {

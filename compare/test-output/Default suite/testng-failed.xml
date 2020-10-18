@@ -3,12 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.zestmoney.tripadvisor.TripAdvisorTest">
+      <class name="com.zestmoney.compare.ComparePriceTest">
         <methods>
           <include name="browser"/>
-          <include name="search"/>
+          <include name="getPriceAmazon"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- com.zestmoney.tripadvisor.TripAdvisorTest -->
+      </class> <!-- com.zestmoney.compare.ComparePriceTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

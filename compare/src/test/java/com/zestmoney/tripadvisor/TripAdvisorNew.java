@@ -16,6 +16,7 @@ public class TripAdvisorNew {
 		driver.manage().window().maximize();
 		driver.get("https://www.tripadvisor.in/");
 		driver.findElement(By.xpath("(//input[@type = 'search'])[2]")).sendKeys("Club Mahindra");
+		System.exit(1);
 		driver.findElement(By.xpath("//div[text() = \"Club Mahindra Madikeri, Coorg\"]")).click();
 		driver.findElement(By.linkText("Write a review")).click();
 		Thread.sleep(2000);

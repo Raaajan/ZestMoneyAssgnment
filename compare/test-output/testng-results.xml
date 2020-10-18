@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="1" ignored="0" total="3" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="154201" started-at="2020-10-08T14:23:17Z" finished-at="2020-10-08T14:25:51Z">
+  <suite name="Default suite" duration-ms="37985" started-at="2020-10-18T13:00:18Z" finished-at="2020-10-18T13:00:56Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="154201" started-at="2020-10-08T14:23:17Z" finished-at="2020-10-08T14:25:51Z">
-      <class name="com.zestmoney.tripadvisor.TripAdvisorTest">
-        <test-method status="PASS" signature="browser()[pri:0, instance:com.zestmoney.tripadvisor.TripAdvisorTest@224edc67]" name="browser" is-config="true" duration-ms="2571" started-at="2020-10-08T14:23:17Z" finished-at="2020-10-08T14:23:19Z">
+    <test name="Default test" duration-ms="37985" started-at="2020-10-18T13:00:18Z" finished-at="2020-10-18T13:00:56Z">
+      <class name="com.zestmoney.compare.ComparePriceTest">
+        <test-method status="PASS" signature="browser()[pri:0, instance:com.zestmoney.compare.ComparePriceTest@5c3bd550]" name="browser" is-config="true" duration-ms="2560" started-at="2020-10-18T13:00:18Z" finished-at="2020-10-18T13:00:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browser -->
-        <test-method status="FAIL" signature="search()[pri:1, instance:com.zestmoney.tripadvisor.TripAdvisorTest@224edc67]" name="search" duration-ms="151603" started-at="2020-10-08T14:23:19Z" finished-at="2020-10-08T14:25:51Z">
-          <exception class="org.openqa.selenium.TimeoutException">
+        <test-method status="FAIL" signature="getPriceAmazon()[pri:1, instance:com.zestmoney.compare.ComparePriceTest@5c3bd550]" name="getPriceAmazon" duration-ms="21465" started-at="2020-10-18T13:00:21Z" finished-at="2020-10-18T13:00:42Z">
+          <exception class="java.lang.ArrayIndexOutOfBoundsException">
             <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //span[@id='bubble_rating'] (tried for 20 second(s) with 500 milliseconds interval)]]>
+              <![CDATA[1]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //span[@id='bubble_rating'] (tried for 20 second(s) with 500 milliseconds interval)
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-at com.zestmoney.tripadvisor.TripAdvisorTest.search(TripAdvisorTest.java:68)
+              <![CDATA[java.lang.ArrayIndexOutOfBoundsException: 1
+at com.zestmoney.compare.ComparePriceTest.getPriceAmazon(ComparePriceTest.java:41)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -46,40 +44,25 @@ at org.testng.TestNG.run(TestNG.java:1017)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[@id='bubble_rating']"}
-  (Session info: chrome=85.0.4183.121)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'LIN25000328', ip: '192.168.0.106', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_261'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 85.0.4183.121, chrome: {chromedriverVersion: 85.0.4183.87 (cd6713ebf92fa..., userDataDir: C:\Users\rajadube\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:50188}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}
-Session ID: 0f6ab48d4ff48f46eb5c9b50684d9f40
-*** Element info: {Using=xpath, value=//span[@id='bubble_rating']}
-at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-at java.lang.reflect.Constructor.newInstance(Unknown Source)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
-at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
-... 26 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          </exception> <!-- java.lang.ArrayIndexOutOfBoundsException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- search -->
-      </class> <!-- com.zestmoney.tripadvisor.TripAdvisorTest -->
+        </test-method> <!-- getPriceAmazon -->
+        <test-method status="PASS" signature="getPriceFlipKart()[pri:2, instance:com.zestmoney.compare.ComparePriceTest@5c3bd550]" name="getPriceFlipKart" duration-ms="13767" started-at="2020-10-18T13:00:42Z" finished-at="2020-10-18T13:00:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getPriceFlipKart -->
+        <test-method status="PASS" signature="compare()[pri:3, instance:com.zestmoney.compare.ComparePriceTest@5c3bd550]" name="compare" duration-ms="3" started-at="2020-10-18T13:00:56Z" finished-at="2020-10-18T13:00:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- compare -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.zestmoney.compare.ComparePriceTest@5c3bd550]" name="tearDown" is-config="true" duration-ms="171" started-at="2020-10-18T13:00:56Z" finished-at="2020-10-18T13:00:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.zestmoney.compare.ComparePriceTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

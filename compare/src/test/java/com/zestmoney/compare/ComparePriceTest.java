@@ -2,12 +2,12 @@ package com.zestmoney.compare;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import com.zestmoney.compare.Base;
 import com.zestmoney.compare.SearchAmazon;
 
@@ -16,13 +16,16 @@ public class ComparePriceTest extends Base{
 	int flipkartprice ;
 	String amazonresult;
 	String flipkartresult;
+	
+	
 @BeforeTest
 public void browser() {
 	openBrowser();
 }
 @Test(priority=1)
  public void getPriceAmazon() throws Exception {
-	
+
+	log.info("open amazon url");
 	driver.get(prop.getProperty("amazonurl"));
 	Thread.sleep(5000);
 	SearchAmazon amazon = new SearchAmazon(driver);
@@ -43,12 +46,14 @@ public void browser() {
 	else {
 		System.out.println("Phone not found on Amazon");
 	}
+	
+	log.info("amazon execution successful");
 }
 
 @Test(priority=2)
 public void getPriceFlipKart() throws Exception {
 	
-
+	log.info("open flipkart url");
 	driver.get(prop.getProperty("flipkarturl"));
 	Thread.sleep(5000);
 	SearchFlipkart flipkart = new SearchFlipkart(driver);
@@ -71,6 +76,7 @@ public void getPriceFlipKart() throws Exception {
 		System.out.println("Phone not found on Flipkart");
 	}
 	
+	log.info("flipkart execution successful");
 }
 
 @Test(priority=3)

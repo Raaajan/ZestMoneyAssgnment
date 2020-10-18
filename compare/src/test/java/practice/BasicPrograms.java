@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class Try {
+public class BasicPrograms {
 
 	public static void main(String[] args) {
 		
@@ -149,14 +149,12 @@ public class Try {
 		String a = "Rajan";
 	
 		char[] ch = a.toCharArray();
-		int count = 0;
 		Map<Character,Object> map = new HashMap<Character,Object>();
 		System.out.println(ch);
 		for(Character newch:ch) {
 			if(!map.containsKey(newch)) {
-				 count=0;
 				//System.out.println("inside if");
-				map.put(newch, ++count);
+				map.put(newch, 1);
 			//	System.out.println("if"+ count);
 			}
 			else {

@@ -11,6 +11,11 @@ import org.testng.annotations.Test;
 import com.zestmoney.compare.Base;
 
 public class FacebookTest extends Base{
+	FacebookTest() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	FacebookPost post;
 	@BeforeTest
 	public void browser() {
@@ -20,10 +25,13 @@ public class FacebookTest extends Base{
 	 public void facebookLogin() throws Exception {
 		
 		driver.get(prop.getProperty("facebookurl"));
+		log.info("Opened facebook URL");
 		FacebookLogin login = new FacebookLogin(driver);
 		login.enterUsername(prop.getProperty("usrname"));
+		log.info("username entered");
 		Thread.sleep(5000);
 		login.enterPassword(prop.getProperty("password"));
+		log.info("password entered");
 		post = login.clickSubmitbtn();
 		
 	}

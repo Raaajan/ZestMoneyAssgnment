@@ -4,7 +4,6 @@ package com.zestmoney.tripadvisor;
 	import java.util.Set;
 
 	import org.openqa.selenium.By;
-	import org.openqa.selenium.JavascriptExecutor;
 	import org.openqa.selenium.Keys;
 	import org.openqa.selenium.WebElement;
 	import org.openqa.selenium.interactions.Actions;
@@ -28,13 +27,11 @@ package com.zestmoney.tripadvisor;
 		public void search() throws InterruptedException {
 			
 			driver.get("https://www.tripadvisor.in/");
-			Thread.sleep(5000);
-			
-			driver.findElement(By.xpath("//button[@aria-label='Close' and @type='button']")).click();
+
 			js.executeScript("window.scrollBy(0,900)");
 			Thread.sleep(3000);
 			driver.findElement(By.xpath("//input[@type='search']")).sendKeys("club mahindra");
-			driver.findElement(By.xpath("//button[@type='submit' and @title='Search']")).click();
+			driver.findElement(By.xpath("(//button[@type='submit' and @title='Search'])[1]")).click();
 			System.out.println("title1 "+driver.getTitle());
 			WebElement firstresult = driver.findElement(By.xpath("(//div[@class='result-title'])[1]"));
 			firstresult.click();
@@ -56,18 +53,23 @@ package com.zestmoney.tripadvisor;
 			driver.manage().window().maximize();
 			WebElement review = driver.findElement(By.xpath("//div[@id='COMMUNITYCONTENT']//a[contains(@href,'UserReview')]"));
 			review.click();
-				
-			//WebDriverWait wait = new WebDriverWait(driver,90);
+			Set<String> reviewwindows = driver.getWindowHandles();
+			Iterator<String> reviewitr = reviewwindows.iterator();
+			while(reviewitr.hasNext()) {
+				String newwinrev = reviewitr.next();
+				System.out.println("win"+newwinrev);
+				driver.switchTo().window(newwinrev);  
+				System.out.println("switched to tab successfully");
+			}
 			
-			//By bubble = driver.findElement(By.xpath("//span[@id='bubble_rating']"));
+			WebDriverWait wait = new WebDriverWait(driver,90);
 			
-			//a.moveToElement(bubble).build().perform();
-			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='bubble_rating']")));
-			//a.moveToElement(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='bubble_rating']"))), 50, 0).build().perform();
-			new Actions(driver).moveToElement(new WebDriverWait(driver, 20)
-					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='bubble_rating']"))), 50, 0)
-					.click().build().perform();
+			WebElement bubble = driver.findElement(By.xpath("//span[@id='bubble_rating']"));
 			
+			wait.until(ExpectedConditions.visibilityOf((bubble)));
+			
+			a.moveToElement(bubble, 50, 0).build().perform();
+			Thread.sleep(3000);
 		}
 	}
 
