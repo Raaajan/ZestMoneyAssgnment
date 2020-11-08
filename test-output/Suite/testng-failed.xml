@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test thread-count="5" name="ComprePriceTest(failed)">
+    <classes>
+      <class name="com.zestmoney.compare.ComparePriceTest">
+        <methods>
+          <include name="browser"/>
+          <include name="getPriceAmazon"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.zestmoney.compare.ComparePriceTest -->
+    </classes>
+  </test> <!-- ComprePriceTest(failed) -->
+  <test thread-count="5" name="FacebookPostTest(failed)">
+    <classes>
+      <class name="com.zestmoney.facebook.FacebookTest">
+        <methods>
+          <include name="browser"/>
+          <include name="facebookPost"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.zestmoney.facebook.FacebookTest -->
+    </classes>
+  </test> <!-- FacebookPostTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->
