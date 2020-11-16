@@ -40,37 +40,17 @@ public class BasicPrograms {
 		
 		System.out.println("sum "+sum);
 		
-		System.out.println("------------------------------------");
-		System.out.println("Second highest no in array");
-		int z[] = new int [] {10,5,20,50,40,100,80};
-		int temp;
-		for(int i=0;i<z.length;i++) { 
-			
-			if(i==z.length-1) {
-				break;
-			}
-				if(z[i]>z[i+1]) {
-					temp = z[i];
-					z[i]=z[i+1];
-					z[i+1]=temp;
-				}
-				
-		}
-		System.out.println("sorted no : ");
-		for(int i=0;i<z.length;i++) { 
-			System.out.println(z[i]);	
-		}
-		System.out.println("second hightest is : "+z[z.length-2]);
-		
-	//Method 2	
+		System.out.println("------------------------------------");	
+		int z[] = new int [] {20,10,200,100,90,150};
 		int largest =z[0];
 		int secondlarge = z[0];
 		int smallest = z[0];
 		for(int i=0;i<z.length;i++) { 
 			
-			if(largest<z[i]) { //at largest this condition will not satisfy
-				secondlarge=largest; //value prior to largest value
+			if(largest<z[i]) { 
 				largest=z[i]; //largest value
+			}else if(secondlarge<z[i] && z[i]<largest) {
+				secondlarge = z[i];
 			}
 			if(z[i]<smallest) {
 				smallest=z[i];
@@ -183,7 +163,7 @@ public class BasicPrograms {
 		}
 		
 		System.out.println("------------------------------------------");
-		System.out.println("reverse string without using 3rd variable");
+		System.out.println("reverse string with using 3rd variable");
 			char t ;
 		 char[] b = a.toCharArray();
 		for(int i=0;i<=a.length()/2;i++) {
