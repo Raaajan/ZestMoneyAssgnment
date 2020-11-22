@@ -13,6 +13,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.openxmlformats.schemas.spreadsheetml.x2006.main.STSourceType;
+
 public class BasicsProgram2 {
 
 	public static void main(String args[]) {
@@ -33,7 +35,9 @@ public class BasicsProgram2 {
 		
 		//removeDuplicatesFromArrayInt();
 		
-		newtry();
+		//maxCharacterRepeated();
+		
+		countWordsInStringContainingNumandInvalidWords();
 
 	}
 
@@ -346,28 +350,109 @@ public class BasicsProgram2 {
 		}
 	}
 	
-	public static void newtry() {
+	public static void maxCharacterRepeated() {
 		
-		String s = "Rajan"; //op = rajn
+		String s = "Raajanddddubeeeeeeeyyyyy"; //op = rajn
 		
 		 char[] a = s.toCharArray();
 		 
-		 LinkedList l = new LinkedList();
+		 HashMap<Character,Integer> map1 = new HashMap<Character,Integer>();
+		 for(char c:a) {
+				
+				if(map1.containsKey(c)==false) {
+					map1.put(c, 1);		
+			}else {
+				int v = map1.get(c);
+				v= v+1;
+				map1.put(c, v);
+			}
+		}
 		 
+		 System.out.println(map1);
 		 
-		 for(int i=0;i<a.length;i++) {
-			 if(l.contains(a[i])) {
-				 
-			 }else {
-				 l.add(a[i]);
-			 }
-		 }
-		 
-		 System.out.println(l);
-
+		 int highest=0;
+		 Character kyname = null;
+		 Integer va;
+			Set<Entry<Character, Integer>> es = map1.entrySet();
+			for(Entry<Character, Integer> z:es) {
+				 va = z.getValue();
+				if(va >highest) {
+					highest=va;
+					kyname = z.getKey();
+				}
+			}
+			
+			System.out.println("k : "+kyname+" h : "+highest);
+			
+}
+	
+	public static void countWordsInStringContainingNumandInvalidWords() {
+		
+		String s = "hay your are wrong, i am rigth. plz contact me on 12345. my passwrd is ADF%^%^GF^";
+		
+		String[] sa = s.split(" ");
+		
+		int count=0;
+		
+		for(int i=0;i<sa.length;i++) {
+			boolean flag= false;
+			char[] ca = sa[i].toCharArray();
+			
+			for(int j=0;j<ca.length;j++) {
+				
+				char c = ca[j];
+				int len = ca.length;
+				if(Character.isLetter(c)||c=='?'||c=='!'||c=='.'||c==',') {
+					if(len==j+1) {
+						flag=true;
+					}
+				}else {
+					break;
+				}
+			}
+			
+			if(flag==true) {
+				count++;
+				System.out.println(sa[i]);
+			}
+			
+		}
+	
+	System.out.println("total words "+count);
+		
+		/*char a = '*';
+		
+		System.out.println(":::::"+Character.isLetter(a));*/
 	}
 	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class MyComparator implements Comparator {
 
@@ -377,5 +462,4 @@ class MyComparator implements Comparator {
 
 		return s2.compareTo(s1);
 	}
-
 }
